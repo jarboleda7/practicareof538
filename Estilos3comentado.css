@@ -1,0 +1,245 @@
+/* RESET  ESTILOS BASE */
+   
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ESTILOS GENERALES*/
+
+body {
+  background-color: #111;
+  color: white;
+  padding: 20px;
+  overflow: hidden; /* Evita scroll no deseado */
+}
+
+/* ============================
+   CONTENEDOR PRINCIPAL
+   ============================ */
+.contenedor {
+  display: flex;       /* Flexbox → distribución flexible */
+  gap: 20px;           /* Espaciado proporcional */
+  height: 100vh;       /* Ocupa todo el alto visible de la pantalla */
+  width: 100vw;        /* Ocupa todo el ancho visible de la pantalla */
+  overflow: hidden;  /* Evita scroll no deseado */
+  flex-wrap: nowrap;   /* No permite que los hijos salten de línea */
+}
+
+/* ============================
+   CONTENEDOR DE TARJETAS
+   ============================ */
+.contenedor-conciertos {
+  display: flex;
+  flex-wrap: wrap;         /* Las cards se ajustan en varias filas */
+  overflow-y: auto;        /* Scroll vertical si excede el alto */
+  overflow-x: hidden;
+  width: 70%;              /* Ocupa 70% de la pantalla (responsivo con %) */
+  gap: 20px;
+  padding-bottom: 10px;
+  scroll-behavior: smooth; /* El scroll se mueve suavemente con una animación fluida. */
+  height: 100%;            /* Se adapta al alto del padre */
+  align-content: flex-start;
+}
+
+/* ============================
+   TARJETAS DE CONCIERTOS
+   ============================ */
+.card {
+  /* Uso de calc() y % → responsivo en el ancho */
+  width: calc((100% - 40px) / 3); 
+  height: 320px;
+  background-size: cover;  /* Imagen adaptada */
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  flex-shrink: 0;          /* Evita que se encoja en flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: 0 0 8px rgba(0,0,0,0.6);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff0000;
+}
+
+/* ============================
+   TEXTOS DENTRO DE LAS CARDS
+   ============================ */
+.textos {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  border-radius: 0 0 12px 12px;
+}
+
+.textos h3 {
+  font-size: 1.3rem; /* Uso de rem → escalable */
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.textos p {
+  font-size: 1rem;  /* Escalable en móviles */
+  font-weight: 400;
+}
+
+/* ============================
+   BANNER LATERAL
+   ============================ */
+.banner {
+  width: 30%;                /* Ocupa el resto de pantalla (100 - 70) */
+  background-size: cover;    /* Imagen adaptable */
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;              /* Se ajusta al alto del padre */
+  color: white;
+  text-align: left;
+  user-select: none;
+}
+
+.banner h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.banner p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.banner ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.banner li {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+/* ============================
+   BOTÓN
+   ============================ */
+.boton {
+  width: max-content;    /* Se adapta al texto */
+  padding: 10px 25px;
+  background-color: #ff0000;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+  background-color: #cc0000;
+}
+
+/* ============================
+   MEDIA QUERIES (RESPONSIVIDAD)
+   ============================ */
+
+/* PANTALLAS <= 900px (tablets, pantallas medianas) */
+@media (max-width: 900px) {
+  .contenedor {
+    flex-direction: column; /* Cambia de horizontal a vertical */
+  }
+
+  .contenedor-conciertos,
+  .banner {
+    width: 100%;   /* Ocupan todo el ancho */
+    height: auto;  /* Se ajustan en altura */
+  }
+
+  .card {
+    width: calc(50% - 10px); /* 2 cards por fila */
+    height: 250px;
+  }
+
+  .banner {
+    padding: 20px;
+    min-height: 300px;
+  }
+}
+
+/* PANTALLAS <= 600px (celulares) */
+@media (max-width: 600px) {
+  .card {
+    width: 100%;  /* 1 card por fila */
+    height: 220px;
+  }
+
+  .textos h3 {
+    font-size: 1.1rem; /* Texto más pequeño */
+  }
+
+  .textos p {
+    font-size: 0.9rem;
+  }
+
+  .banner h3 {
+    font-size: 1.5rem;
+  }
+
+  .banner p,
+  .banner li {
+    font-size: 1rem;
+  }
+
+  .boton {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+  }
+}
+
+/* PANTALLAS <= 400px (celulares pequeños) */
+@media (max-width: 400px) {
+  .card {
+    height: 200px;
+  }
+
+  .textos {
+    padding: 10px;
+  }
+
+  .textos h3 {
+    font-size: 1rem;
+  }
+
+  .textos p {
+    font-size: 0.8rem;
+  }
+
+  .banner {
+    padding: 15px;
+  }
+
+  .banner h3 {
+    font-size: 1.3rem;
+  }
+
+  .banner p,
+  .banner li {
+    font-size: 0.9rem;
+  }
+
+  .boton {
+    font-size: 0.8rem;
+    padding: 6px 16px;
+  }
+}
